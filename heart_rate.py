@@ -8,15 +8,15 @@ def calculate_zones(max_hr):
         "zone5": (0.90 * max_hr,  max_hr),
     }
 
-def get_zone_status (heart_rate):
+def get_zone_status (heart_rate, max_hr):
 
     zone_range = calculate_zones(max_hr)
     if heart_rate < zone_range["zone1"][1] :
-        return "Too Slow"
+        return "Slow"
     elif heart_rate <= zone_range["zone2"][1] :
         return "Perfect"
     elif heart_rate < zone_range["zone3"][1] :
-        return "Getting a little too high"
+        return "High"
     else:
         return "DANGER"
 
