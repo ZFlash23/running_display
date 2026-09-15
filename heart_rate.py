@@ -1,8 +1,5 @@
-def calculate_max_hr(age):
-    return 208 - (0.7 * age)
 
-def calculate_zones(age):
-    max_hr  =  calculate_max_hr(age)
+def calculate_zones(max_hr):
     return{
         "zone1": (0.50 * max_hr, 0.60 * max_hr),
         "zone2": (0.60 * max_hr, 0.70 * max_hr),
@@ -11,9 +8,9 @@ def calculate_zones(age):
         "zone5": (0.90 * max_hr,  max_hr),
     }
 
-def get_zone_status (heart_rate, age):
+def get_zone_status (heart_rate):
 
-    zone_range = calculate_zones(age)
+    zone_range = calculate_zones(max_hr)
     if heart_rate < zone_range["zone1"][1] :
         return "Too Slow"
     elif heart_rate <= zone_range["zone2"][1] :
@@ -24,8 +21,8 @@ def get_zone_status (heart_rate, age):
         return "DANGER"
 
 if __name__ == "__main__":
-    age = 25
-    print(calculate_zones(age))
-    print(get_zone_status(180, age))
-    print(get_zone_status(120, age))
-    print(get_zone_status(150, age))
+    max_hr = 192
+    print(calculate_zones(max_hr))
+    print(get_zone_status(180, max_hr))
+    print(get_zone_status(120, max_hr))
+    print(get_zone_status(150, max_hr))
