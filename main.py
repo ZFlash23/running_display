@@ -7,7 +7,10 @@ def main():
     storage.set_initial_data(user_age)
     max_hr = heart_rate.calculate_current_max_hr(user_age)
     zone_range = heart_rate.calculate_zones(max_hr)
-    while(running):
+
+    #testing
+    start = time.time()
+    while(time.time() - start < 20):
         current_hr = get_current_hr()
         curernt_zone = heart_rate.get_zone_status(current_hr, max_hr)
         if current_zone == "Slow":
@@ -18,10 +21,10 @@ def main():
             #send non stop vibration
 
         time.sleep(1)
-        while pause_run:
-            time.sleep(0.5)
-        if stop_run:
-            running = False
+        #while pause_run:
+           # time.sleep(0.5)
+       # if stop_run:
+            #running = False
 
 
 
@@ -44,3 +47,8 @@ def try_parse_int(s, val=None):
     return int(s)
   except ValueError:
     return val
+
+
+
+if __name__ == "__main__":
+    main()
