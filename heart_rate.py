@@ -16,9 +16,9 @@ def get_zone_status (heart_rate, max_hr):
     elif heart_rate <= zone_range["zone2"][1] :
         return "Perfect"
     elif heart_rate < zone_range["zone3"][1] :
-        return "High"
+        return "Fast"
     else:
-        return "DANGER"
+        return "Danger"
 
 if __name__ == "__main__":
     max_hr = 192
