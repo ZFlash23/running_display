@@ -1,7 +1,6 @@
 import storage
 import heart_rate
 import time
-from itertools import islice
 
 def main():
     user_age = user_age_prompt()
@@ -10,7 +9,6 @@ def main():
     max_hr = heart_rate.calculate_current_max_hr(user_age)
     target_zone = target_zone_prompt()
     
-    start = time.time()
     while(running):
         current_hr = get_current_hr()
         curernt_zone = heart_rate.get_zone_status(current_hr, max_hr)
@@ -21,7 +19,6 @@ def main():
         if current_zone == "Danger":
             #send non stop vibration
 
-        time.sleep(1)
         while pause_run:
             time.sleep(0.5)
 
@@ -36,15 +33,16 @@ def main():
             minute_pace.Append(current_pace)
 
         #save pace info every five minutes #minute_pace.clear() if you want to clear or do or minute_pace[::5]
-        if(timer_every_five):
+        if(timer_from_watch%5 == 0): ##what if it skips the 5x minute mark ?
             average_pace = sum(minute_pace[::5]) /5 
             pace_info.Append({"minute": timer_every_five, "zone": target_zone, "avg_pace": average_pace})
 
         if stop_run:
             zones_data.Append({"zone": target_zone, "untilminute" : timer_from_watch})
             running = False
+        time.sleep(1)
 
-    save_pace_entry(username, run_date, zones_data, pace_info):
+    storage.save_pace_entry(username, run_date, zones_data, pace_info):
     storage.save_run_peak(username, user_age, heart_peak, run_date)
     
 
