@@ -53,7 +53,7 @@ def save_pace_entry(username, run_date, target_zones, blocks):
     file_name = get_file_name(username)
     with open(file_name, "r") as f:
         data = json.load(f)  
-    data["pace_history"].Append({"date": run_date, "target_zones": target_zones, "blocks" : blocks})
+    data["pace_history"].append({"date": run_date, "target_zones": target_zones, "blocks" : blocks})
 
     with open(file_name, "w") as f:
         json.dump(data, f, indent=4)
